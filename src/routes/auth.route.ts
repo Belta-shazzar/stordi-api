@@ -2,11 +2,13 @@ import express from "express";
 import * as AuthController from "../controllers/auth.controller";
 import passport from "passport";
 
-export const authRoutes = express.Router();
+const route = express.Router();
 
-authRoutes.post("/sign-up", AuthController.signup);
-authRoutes.post("/sign-in", AuthController.signin);
+route.post("/sign-up", AuthController.signup);
+route.post("/sign-in", AuthController.signin);
 
 // authRoutes.get('/google',  passport.authenticate('google', { scope: ['profile', 'email'] }))
 // authRoutes.get('/google/redirect', passport.authenticate('google'), AuthController.googleAuth);
-authRoutes.post("/change_password", AuthController.changePassword);
+route.post("/change_password", AuthController.changePassword);
+
+export default route;

@@ -1,9 +1,14 @@
 import jwt from "jsonwebtoken";
 import { Flag } from "../util";
 
+export interface Payload {
+  userId: string;
+  flag: Flag;
+}
+
 export async function generateToken(userId: string, flag: Flag) {
   try {
-    const payload = {
+    const payload: Payload = {
       userId,
       flag,
     };
@@ -11,6 +16,16 @@ export async function generateToken(userId: string, flag: Flag) {
     const token = jwt.sign(payload, process.env.SECRET!, { expiresIn: "24h" });
 
     return token;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function decodeToken(token: string) {
+  try {    
+    const payload = jwt.verify(token, process.env.SECRET!);
+
+    return payload;
   } catch (error) {
     console.log(error);
   }

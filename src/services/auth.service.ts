@@ -3,7 +3,6 @@ import * as UserRepo from "../database/repository/user.repo";
 import bcrypt from "bcryptjs";
 import { Flag } from "../util";
 import { generateToken } from "../config/jwt";
-import { use } from "passport";
 
 export const signUp = async (signupReq: Record<string, any>) => {
   const { fullname, email, password } = signupReq;
@@ -30,10 +29,12 @@ export const signUp = async (signupReq: Record<string, any>) => {
     password,
   });
 
+  const token = await generateToken(user._id.toString(), Flag.AUTH);
+
   return {
     success: true,
-    message: "account created successfully",
-    data: { user: _.omit(user.toJSON(), ["password", "__v"]) },
+    message: "",
+    data: { user: _.omit(user.toJSON(), ["password", "__v"]), token },
   };
 };
 

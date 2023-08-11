@@ -1,7 +1,11 @@
 import { Request } from "express";
 import { type } from "os";
 
-export interface AuthRequest extends Request {}
+export interface AuthRequest extends Request {
+  user: {
+    id: string
+  }
+}
 
 export enum Status {
   SUCCESS = "success",
