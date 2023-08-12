@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import User from "../models/user.model";
 
 export const create = async (details: Record<string, any>) => {
