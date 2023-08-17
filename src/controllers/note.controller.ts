@@ -31,3 +31,15 @@ export const getANote = async (req: any, res: Response) => {
   }
 }
 
+export const searchGoogle = async (req: any, res: Response) => {
+  try {
+    const { success, message, data } = await NoteService.searchGoogle(req.query.search)
+
+    return res.status(200).json({ success, message, data });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ success: false, message: "could not resolve request" });
+    
+  }
+}
+

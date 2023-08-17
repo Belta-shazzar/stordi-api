@@ -6,6 +6,7 @@ const route = express.Router();
 
 route.post('/create', Auth, NoteController.createNote);
 route.get('/notes', Auth, NoteController.getNotes)
+route.get('/search', NoteController.searchGoogle)
 route.get('/:id', Auth, NoteController.getANote)
 
 export default route;

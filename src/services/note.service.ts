@@ -1,6 +1,6 @@
 import * as UserRepo from "../database/repository/user.repo";
 import * as NoteRepo from "../database/repository/note.repo";
-import { Types } from "mongoose";
+import search from "../config/puppeteer";
 
 export const createNote = async (params: Record<string, any>) => {
   const { userId, title } = params;
@@ -64,3 +64,15 @@ export const getANotes = async (params: Record<string, any>) => {
     data: { note },
   };
 }
+export async function searchGoogle(query: string) {
+  if (!query) {
+    return { success: false, message: "search query required", data: {} };
+  }
+
+  const searchResult = await search(query);
+
+  return { success: true, message: '', data: { searchResult } };
+
+  console.log(searchResult);
+}
+
