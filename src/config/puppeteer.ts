@@ -14,7 +14,8 @@ const search = async (query: string) => {
 
   // await tab.screenshot({ path: "example.png" });
 
-  let response = await tab.$$eval("div[class=MjjYud]", (results) => {
+  // let response = await tab.$$eval("div[class=MjjYud]", (results) => {
+  let response = await tab.$$eval("div[class=v7W49e] > div[class=MjjYud]", (results) => {
     let data: any[] = [];
 
     results.forEach((parent) => {
@@ -26,9 +27,9 @@ const search = async (query: string) => {
       let step = direct.querySelector(".kvH3mc");
       let arrIndex = 1; //For varying description
 
-      if (step === null) return //{
-        // step = direct.querySelector(".GLI8Bc")
-        // arrIndex = 2
+      if (step === null) return; //{
+      // step = direct.querySelector(".GLI8Bc")
+      // arrIndex = 2
       // }
 
       let pickUp: any = step.querySelectorAll(".Z26q7c");
@@ -38,11 +39,11 @@ const search = async (query: string) => {
       const url = pickUp[0].querySelector("div[class=yuRUbf] > div > a").href;
       const title = pickUp[0].querySelector("div[class=yuRUbf] > div > a > h3").innerText;
 
-      let deet: Record<string, any> = { title, url }
-      const desc = pickUp[arrIndex].querySelector(".VwiC3b > span").innerText
+      let deet: Record<string, any> = { title, url };
+      const desc = pickUp[arrIndex].querySelector(".VwiC3b > span").innerText;
 
       if (desc !== null && desc !== undefined) {
-        deet = { ...deet, desc }
+        deet = { ...deet, desc };
       }
 
       // const desc = description === null ? "" : description;

@@ -8,5 +8,7 @@ route.post('/create', Auth, NoteController.createNote);
 route.get('/notes', Auth, NoteController.getNotes)
 route.get('/search', NoteController.searchGoogle)
 route.get('/:id', Auth, NoteController.getANote)
+// update notes
+// delete notes
 
 export default route;

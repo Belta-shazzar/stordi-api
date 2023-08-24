@@ -35,8 +35,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
     },
     googleId: {
-      type: String,
-      unique: true
+      type: String
     }
   },
   { timestamps: true },

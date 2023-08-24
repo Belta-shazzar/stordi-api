@@ -78,8 +78,8 @@ export const googleAuth = async (profile: Record<string, any>) => {
       emailVerifiedAt: new Date(),
     });
 
-    return user
+    return user;
   }
 
   return checkUser;
-}
+};

@@ -6,6 +6,7 @@ export const signup = async (req: Request, res: Response) => {
     const { success, message, data } = await AuthService.signUp({ ...req.body });
     return res.status(200).json({ success, message, data });
   } catch (error: any) {
+    console.log(error)
     return res.status(500).json({ success: false, message: "could not resolve request" });
   }
 };
