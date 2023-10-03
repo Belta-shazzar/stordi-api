@@ -1,5 +1,6 @@
 import _ from "lodash";
 import * as UserRepo from "../database/repository/user.repo";
+import { createCategory } from "../database/repository/category.repo";
 import bcrypt from "bcryptjs";
 import { Flag } from "../util";
 import { generateToken } from "../config/jwt";
@@ -28,6 +29,8 @@ export const signUp = async (signupReq: Record<string, any>) => {
     email,
     password,
   });
+
+  await createCategory({ name: 'general', userId: user._id });
 
   const token = await generateToken(user._id.toString(), Flag.AUTH);
 

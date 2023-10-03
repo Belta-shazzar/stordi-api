@@ -4,9 +4,10 @@ import Auth from "../middlewares/auth"
 
 const route = express.Router();
 
-route.post('/create', Auth, NoteController.createNote);
-route.get('/notes', Auth, NoteController.getNotes)
+route.get('/', Auth, NoteController.getNotes)
+route.post('/create/:categoryId', Auth, NoteController.createNote);
 route.get('/search', NoteController.searchGoogle)
+route.get('/category/:id', Auth, NoteController.getByCategory);
 route.get('/:id', Auth, NoteController.getANote)
 // update notes
 // delete notes

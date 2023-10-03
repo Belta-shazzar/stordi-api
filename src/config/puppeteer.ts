@@ -1,63 +1,108 @@
-import puppeteer from "puppeteer";
+// import puppeteer from "puppeteer";
+// import { child } from "winston";
 
-const search = async (query: string) => {
-  const browser = await puppeteer.launch({ headless: "new" });
+// const search = async (query: string) => {
+//   const browser = await puppeteer.launch({ headless: "new" });
 
-  const tab = await browser.newPage();
-  await tab.goto("https://google.com");
+//   const tab = await browser.newPage();
+//   await tab.goto("https://google.com");
 
-  await tab.type('textarea[name="q"]', query);
+//   await tab.type('textarea[name="q"]', query);
 
-  await tab.$eval("input[name=btnK]", (button) => button.click());
+//   await tab.$eval("input[name=btnK]", (button) => button.click());
 
-  await tab.waitForSelector("div[id=search]");
+//   await tab.waitForSelector("div[id=search]");
 
-  // await tab.screenshot({ path: "example.png" });
+//   await tab.screenshot({ path: "example.png" });
 
-  // let response = await tab.$$eval("div[class=MjjYud]", (results) => {
-  let response = await tab.$$eval("div[class=v7W49e] > div[class=MjjYud]", (results) => {
-    let data: any[] = [];
+//   // let response = await tab.$$eval("div[class=MjjYud]", (results) => {
+//   // > div[class=MjjYud]
+//   let response = await tab.$$eval("div[class=v7W49e]", (result) => {
+//     let count = 0;
+//     let actualRes: any = [];
+//     // let dummyRes: any = [];
+//     // result.forEach((parentElement) => {
+//     //   // Get the direct child elements of the current parent element
+//     //   const directChildren = parentElement.children;
 
-    results.forEach((parent) => {
-      const direct = parent.querySelector(".g");
-      if (direct === null) {
-        return;
-      }
+//     //   // Loop through the direct child elements
+//     //   for (let i = 0; i < directChildren.length; i++) {
+//     //     const childElement = directChildren[i];
+//     //     if (childElement.className.includes("MjjYud")) {
+//     //       actualRes.push(childElement);
+//     //     }
+//     //     // Do something with each direct child element
+//     //   }
+//     // });
 
-      let step = direct.querySelector(".kvH3mc");
-      let arrIndex = 1; //For varying description
+//     // actualRes.forEach((parent: any) => {
+//     //   dummyRes.push({ name: parent.className })
+//       // const direct = parent.querySelector(".g");
+//       // // if (direct === null) {
+//       // //   return;
+//       // // }
+//       // let step = direct.querySelector(".N54PNb");
 
-      if (step === null) return; //{
-      // step = direct.querySelector(".GLI8Bc")
-      // arrIndex = 2
-      // }
+//       // Array.from(step).forEach((dummy: any) => {
+//       //   // Get the direct child elements of the current parent element
+//       //   const dummyDC = dummy.children;
 
-      let pickUp: any = step.querySelectorAll(".Z26q7c");
+//       //   // Loop through the direct child elements
+//       //   for (let i = 0; i < dummyDC.length; i++) {
+//       //     const childElement = dummyDC[i];
+//       //     // if (childElement.className.includes("MjjYud")) {
+//       //     // dummyRes.push(childElement.className);
+//       //     count++;
+//       //     // }
+//       //     // Do something with each direct child element
+//       //   }
+//       // });
+//     // });
+//     // return dummyRes;
+//   // });
+//   //  (results) => {
+//     let data: any[] = [];
 
-      pickUp = Array.from(pickUp);
+//     // result.forEach((parent) => {
+//       // const direct = parent.querySelector(".g");
+//   //     if (direct === null) {
+//   //       return;
+//   //     }
+//     // }
+//   //     let step = direct.querySelector(".kvH3mc");
+//   //     let arrIndex = 1; //For {}
 
-      const url = pickUp[0].querySelector("div[class=yuRUbf] > div > a").href;
-      const title = pickUp[0].querySelector("div[class=yuRUbf] > div > a > h3").innerText;
+//   //     if (step === null) return; //{
+//   //     // step = direct.querySelector(".GLI8Bc")
+//   //     // arrIndex = 2
+//   //     // }
 
-      let deet: Record<string, any> = { title, url };
-      const desc = pickUp[arrIndex].querySelector(".VwiC3b > span").innerText;
+//   //     let pickUp: any = step.querySelectorAll(".Z26q7c");
 
-      if (desc !== null && desc !== undefined) {
-        deet = { ...deet, desc };
-      }
+//   //     pickUp = Array.from(pickUp);
 
-      // const desc = description === null ? "" : description;
+//   //     const url = pickUp[0].querySelector("div[class=yuRUbf] > div > a").href;
+//   //     const title = pickUp[0].querySelector("div[class=yuRUbf] > div > a > h3").innerText;
 
-      data.push(deet);
-      // data.push({ title, url, desc });
-    });
+//   //     let deet: Record<string, any> = { title, url };
+//   //     const desc = pickUp[arrIndex].querySelector(".VwiC3b > span").innerText;
 
-    return data;
-  });
+//   //     if (desc !== null && desc !== undefined) {
+//   //       deet = { ...deet, desc };
+//   //     }
 
-  await browser.close();
-  console.log("Executed!");
-  return response;
-};
+//   //     // const desc = description === null ? "" : description;
 
-export default search;
+//   //     data.push(deet);
+//   //     // data.push({ title, url, desc });
+//     });
+
+//     return data;
+//   });
+
+//   await browser.close();
+//   console.log("Executed!");
+//   return response;
+// };
+
+// export default search;

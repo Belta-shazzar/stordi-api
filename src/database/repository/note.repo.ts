@@ -12,3 +12,7 @@ export const getNotes = async (userId: Types.ObjectId) => {
 export const getByQuery = async (params: Record<string, any>) => {
     return await Note.findOne(params);
 }
+
+export const getManyByQuery = async (params: Record<string, any>) => {
+  return await Note.find(params);
+}

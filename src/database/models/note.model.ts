@@ -1,11 +1,16 @@
 import mongoose, { Schema } from "mongoose";
 import User from "./user.model";
+import Category from "./category.model";
 
 const NoteSchema = new mongoose.Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
       ref: User,
+    },
+    categoryId: {
+      type: Schema.Types.ObjectId,
+      ref: Category,
     },
     title: {
       type: String,

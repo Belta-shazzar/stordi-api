@@ -13,7 +13,7 @@ export async function generateToken(userId: string, flag: Flag) {
       flag,
     };
 
-    const token = jwt.sign(payload, process.env.SECRET!, { expiresIn: "24h" });
+    const token = jwt.sign(payload, process.env.SECRET!, { expiresIn: "72h" });
 
     return token;
   } catch (error) {

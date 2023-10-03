@@ -13,14 +13,6 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    ip: {
-      type: String,
-      select: false,
-    },
-    userAgent: {
-      type: String,
-      select: false,
-    },
     email: {
       type: String,
       unique: true,
